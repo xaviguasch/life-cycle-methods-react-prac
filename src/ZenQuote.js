@@ -4,11 +4,15 @@ import './ZenQuote.css'
 
 class ZenQuote extends Component {
   constructor(props) {
+    console.log('inside constructor')
+
     super(props)
     this.state = { quote: '', isLoaded: false }
   }
 
   componentDidMount() {
+    console.log('inside cdmount')
+
     axios.get('https://api.github.com/zen').then(response => {
       setTimeout(() => {
         this.setState({ quote: response.data, isLoaded: true })
@@ -16,7 +20,13 @@ class ZenQuote extends Component {
     })
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log('inside cdupdate')
+  }
+
   render() {
+    console.log('inside render')
+
     return (
       <div>
         {this.state.isLoaded ? (
